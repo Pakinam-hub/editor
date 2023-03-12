@@ -74,11 +74,9 @@ function f11() {
 	document.getElementById("textarea1").value = final_string;
 }
 
-//string.replace('//', '');
 
 function f12() {
 	//function to comment 
-	//let text1 = "//";
 
 	var textArea = document.getElementById("textarea1");
 
@@ -103,7 +101,6 @@ function f12() {
 		final_string = final_string.concat("", lines[0]);
 	}
 
-	// final_string = final_string.concat(" ",lines[0]); 
 	for (var i = 1; i < lines.length; i++) {
 		if (lines[i] == selectedText) {
 			final_string = final_string.concat("\n", result);
@@ -206,7 +203,6 @@ function count_lines(txt)
 //AUTOCOMPLETE FUNCTION
 
 $(function() {
-//	var availableTags = ["jQuery.com", "jQueryUI.com", "jQueryMobile.com", "jQueryScript.net", "jQuery", "Free jQuery Plugins"]; // array of autocomplete words
 	var availableTags = ["Category", "Clop", "Check", "jQueryScript.net", "jQuery", "Free jQuery Plugins"];
 
 	var minWordLength = 1;
@@ -217,8 +213,7 @@ $(function() {
 	function extractLast(term) {
 	return split(term).pop();
 	}
-	$("#textarea1") // jQuery Selector
-	// don't navigate away from the field on tab when selecting an item
+	$("#textarea1") 
 	.bind("keydown", function(event) {
 	if (event.keyCode === $.ui.keyCode.TAB && $(this).data("ui-autocomplete").menu.active) {
 	event.preventDefault();
@@ -226,74 +221,24 @@ $(function() {
 	}).autocomplete({
 	minLength: minWordLength,
 	source: function(request, response) {
-	// delegate back to autocomplete, but extract the last term
+
 	var term = extractLast(request.term);
 	if(term.length >= minWordLength){
 	response($.ui.autocomplete.filter( availableTags, term ));
 	}
 	},
 	focus: function() {
-	// prevent value inserted on focus
 	return false;
 	},
 	select: function(event, ui) {
 	var terms = split(this.value);
-	// remove the current input
 	terms.pop();
-	// add the selected item
 	terms.push(ui.item.value);
-	// add placeholder to get the comma-and-space at the end
 	terms.push("");
 	this.value = terms.join(" ");
 	return false;
 	}
 	});
 	});
-/** 
-	$(function() {
-		//	var availableTags = ["jQuery.com", "jQueryUI.com", "jQueryMobile.com", "jQueryScript.net", "jQuery", "Free jQuery Plugins"]; // array of autocomplete words
-			var availableTags = ["Category", "Clop", "Check", "jQueryScript.net", "jQuery", "Free jQuery Plugins"];
-		
-			var minWordLength = 1;
-			function split(val) {
-			return val.split('\n');
-			}
-			
-			function extractLast(term) {
-			return split(term).pop();
-			}
-			$("#textarea1") // jQuery Selector
-			// don't navigate away from the field on tab when selecting an item
-			.bind("keydown", function(event) {
-			if (event.keyCode === $.ui.keyCode.TAB && $(this).data("ui-autocomplete").menu.active) {
-			event.preventDefault();
-			}
-			}).autocomplete({
-			minLength: minWordLength,
-			source: function(request, response) {
-			// delegate back to autocomplete, but extract the last term
-			var term = extractLast(request.term);
-			if(term.length >= minWordLength){
-			response($.ui.autocomplete.filter( availableTags, term ));
-			}
-			},
-			focus: function() {
-			// prevent value inserted on focus
-			return false;
-			},
-			select: function(event, ui) {
-			var terms = split(this.value);
-			// remove the current input
-			terms.pop();
-			// add the selected item
-			terms.push(ui.item.value);
-			// add placeholder to get the comma-and-space at the end
-			terms.push("");
-			this.value = terms.join("\n");
-			return false;
-			}
-			});
-			});
 
-*/			
 f13();
